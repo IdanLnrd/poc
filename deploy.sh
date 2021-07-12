@@ -3,7 +3,7 @@ rm -rf docs
 mkdir -p docs
 echo "Build client start"
 cd client
-ng build --prod
+ng build
 cd ..
 echo "Build client done"
 echo "Copy dist directory"
