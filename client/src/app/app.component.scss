@@ -1,14 +1,15 @@
 .title {
     font-size: x-large;
     text-align: center;
-    padding: 16px;
+    padding: 32px;
 }
 
 .search {
     display: block;
     text-align: center;
-    padding: 16px;
     input {
+        margin: 8px auto;
+        display: block;
         outline: none;
         font-size: larger;
         padding: 10px;
@@ -16,6 +17,18 @@
         min-width: 300px;
         width: 30%;
         border-radius: 4px;
+        background-color: transparent;
+    }
+
+    input[type="submit"] {
+        max-width: 128px;
     }
     
+}
+.result {
+    display: flex;
+    justify-content: center;
+}
+mat-spinner {
+    margin: auto;
 }
