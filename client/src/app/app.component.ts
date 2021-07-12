@@ -10,17 +10,17 @@ export class AppComponent {
   title = 'LNRD.io';
   loading = false;
   result: any = {};
+  company: {[key: string]: { domain: string, name: string } } = {};
   constructor(private api: ApiService) {}
   
-  search(websiteEl: HTMLInputElement, nameEl: HTMLInputElement) {
-    if(websiteEl.value && nameEl.value) {
+  search(nameEl: HTMLInputElement) {
+    if(nameEl.value) {
       this.loading = true;
-      const domain = websiteEl.value;
-      const name = nameEl.value;
+      const { domain, name } = this.company[nameEl.value] || { domain: 'nubela.co', name: 'Nubela' };
       const $result = this.api.getCompanyLinkedInUrl( { domain, name } );
       $result.toPromise()
-      .then(data => this.result = data)
-      .catch(console.error)
+      .then(data => { this.result = data })
+      .catch(err => console.error(err))
       .finally(() => {
         this.loading = false;
       });

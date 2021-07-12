@@ -21,7 +21,11 @@
     }
 
     input[type="submit"] {
-        max-width: 128px;
+        max-width: 1px;
+        opacity: 0;
+        visibility: none;
+        position: absolute;
+        pointer-events: none;
     }
     
 }

@@ -7,7 +7,11 @@ const Authorization = { Bearer: '8048c8d1-b607-4400-9f58-c056e247879e' }
 
 @Injectable()
 export class ApiService {
-  private headers = { 'Authorization': `Bearer ${Authorization.Bearer}` };
+  private headers = { 
+    'Authorization': `Bearer ${Authorization.Bearer}`,
+    'Accept': '*/*',
+    'Access-Control-Allow-Origin': '*'
+  };
   constructor(private http: HttpClient) { 
   }
   // Linkedin Company Profile General Resolution Endpoint
