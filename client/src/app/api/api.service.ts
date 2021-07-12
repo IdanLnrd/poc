@@ -19,4 +19,9 @@ export class ApiService {
     const query = `url=${linkedInUrl}`;
     return this.http.get(`${BASE_URL}?${query}`);
   }
+
+  test() {
+    return this.http.get(`${BASE_URL}/test`).toPromise();
+  }
+
 }

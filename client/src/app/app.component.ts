@@ -13,6 +13,7 @@ export class AppComponent {
   company: {[key: string]: { domain: string, name: string } } = {};
   constructor(private api: ApiService) {}
   
+
   search(nameEl: HTMLInputElement) {
     if(nameEl.value) {
       this.loading = true;
