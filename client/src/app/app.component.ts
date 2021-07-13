@@ -45,9 +45,12 @@ export class AppComponent implements OnInit {
       formControl.disable();
       this.loading = true;
       const result = await this.api.getCompanyLinkedInProfile({ linkedInUrl }).toPromise();
-      console.log(result);
+     
+      const { search_id } = result;
+      result.jobs = await this.api.getJobs({ search_id }).toPromise();
       this.selected = [];
       this.selected.push(result);
+      console.log(result); 
     } catch(e) {
       console.error(e);
     } finally {

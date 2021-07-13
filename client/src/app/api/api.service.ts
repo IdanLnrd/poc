@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -7,17 +8,17 @@ const BASE_URL = 'http://localhost:3000';
 export class ApiService {
    constructor(private http: HttpClient) { 
   }
-  // Linkedin Company Profile General Resolution Endpoint
-  getCompanyLinkedInUrl(data:{ domain: string, name: string }) {
-    const { domain, name } = data;
-    const query = `company_domain=${domain}&company_name=${name}`;
-    return this.http.get(`${BASE_URL}/resolve?${query}`);
-  }
+
   // Linkedin Company Profile Endpoint
-  getCompanyLinkedInProfile(data: { linkedInUrl: string }) {
+  getCompanyLinkedInProfile(data: { linkedInUrl: string }): Observable<any> {
     const { linkedInUrl } = data;
-    const query = `url=${encodeURIComponent(linkedInUrl)}`;
-    return this.http.get(`${BASE_URL}?${query}`);
+    const query = `url=${linkedInUrl}`;
+    return this.http.get(`${BASE_URL}/company?${query}`);
   }
 
+  getJobs(data: {  search_id: string }): Observable<any> {
+    const { search_id } = data;
+    const query = `search_id=${search_id}`;
+    return this.http.get(`${BASE_URL}/jobs?${query}`);
+  }
 }

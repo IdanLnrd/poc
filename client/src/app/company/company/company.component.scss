@@ -6,7 +6,7 @@
     padding: 16px;
     border-radius: 8px;
 
-    .sim {
+    .chip {
         margin: 4px;
         padding: 4px;
         border: 1px solid rgba($color: #000000, $alpha: 0.3);
@@ -14,12 +14,32 @@
         display: inline-block;
         cursor: pointer;
     }
-
+    .sep {
+        height: 1px;
+        background-color: rgba($color: #000000, $alpha: 0.3);
+        border: none;
+        padding: 0;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
     .title {
+        font-size: larger;
         display: flex;
         align-items: center;
         justify-content: space-between;
         min-height: 32px;
 
+    }
+
+    .load-more {
+        margin-top: 8px;
+        text-decoration: underline;
+        color: blue;
+        text-transform: capitalize;
+        text-align: center;
+        cursor: pointer;
     }
 }
