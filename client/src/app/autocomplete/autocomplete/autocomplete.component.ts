@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -11,7 +11,7 @@ export class AutocompleteComponent implements OnInit {
   @Output() enterValue = new Subject<FormControl>();
   constructor() { }
   myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
+  @Input() options: string[] = [];
   filteredOptions: Observable<string[]> | undefined;
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class AutocompleteComponent implements OnInit {
 
     
   }
-
+ 
   onSubmit(ctrl: FormControl) {
     this.enterValue.next(ctrl);
     return false;

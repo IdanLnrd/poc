@@ -12,14 +12,48 @@ export class AppComponent implements OnInit {
   title = 'LNRD.io';
   loading = false;
   result: any = {};
+  companiesNames: string[] = [];
+  companies: any[] = [];
+  selected : any[] = [];
   company: {[key: string]: { domain: string, name: string } } = {};
   constructor(private api: ApiService, private dataset: DatasetService) {}
   
   ngOnInit() : void {
-    
+    this.dataset.companies().then(c => {
+      this.companies = c;
+      this.companiesNames = this.companies.filter(c => !!c.name).map(c => c.name);
+    });
   }
 
-  search(formControl: FormControl) {
-    console.log('search:', formControl.value);
+  similarSelected(similar: any) {
+    console.log(similar);
+  }
+
+  async search(formControl: FormControl) {
+    const name = formControl.value;
+    const company = this.companies.find(c => c.name.toLowerCase() === name.toLowerCase());
+    const lu = company['linkedin url'];
+    if(!lu) {
+      alert('no linkedin url!');
+      return console.error('no linkedin url');
+    }
+    
+    const linkedInUrl = `https://www.${lu}/`;
+    console.log('search:', linkedInUrl);
+    
+    try {
+      formControl.disable();
+      this.loading = true;
+      const result = await this.api.getCompanyLinkedInProfile({ linkedInUrl }).toPromise();
+      console.log(result);
+      this.selected = [];
+      this.selected.push(result);
+    } catch(e) {
+      console.error(e);
+    } finally {
+      this.loading = false;
+      formControl.enable();
+    }
+  
   }
 }

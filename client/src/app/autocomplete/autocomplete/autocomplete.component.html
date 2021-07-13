@@ -2,14 +2,14 @@
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Company name</mat-label>
       <input type="text"
-             placeholder="Pick one"
+             placeholder=""
              aria-label="Company name"
              matInput
              [formControl]="myControl"
              [matAutocomplete]="auto">
       <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
+          {{ option }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>

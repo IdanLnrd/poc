@@ -1,0 +1,14 @@
+<div *ngIf="data; else no" class="card">
+    <div class="title">
+        <div>{{ data.name }}</div>
+        <img width="32px" [src]="data.profile_pic_url" alt="">  
+    </div>
+    <div>
+        <div>similar companies</div>
+        <div>
+            <span class="sim" *ngFor="let sc of data.similar_companies" 
+            (click)="similarSelected.next(sc)" >{{ sc.name }}</span>            
+        </div>
+    </div>
+</div>
+<ng-template #no>no company data</ng-template>

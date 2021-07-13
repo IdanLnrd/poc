@@ -16,12 +16,8 @@ export class ApiService {
   // Linkedin Company Profile Endpoint
   getCompanyLinkedInProfile(data: { linkedInUrl: string }) {
     const { linkedInUrl } = data;
-    const query = `url=${linkedInUrl}`;
+    const query = `url=${encodeURIComponent(linkedInUrl)}`;
     return this.http.get(`${BASE_URL}?${query}`);
-  }
-
-  test() {
-    return this.http.get(`${BASE_URL}/test`).toPromise();
   }
 
 }

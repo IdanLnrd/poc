@@ -1,5 +1,14 @@
 <div>
   <div class="title">{{ title }}</div>
-  <app-autocomplete (enterValue)="search($event)"></app-autocomplete>
-  <mat-spinner *ngIf="loading"></mat-spinner>
+  <app-autocomplete 
+    [options]="companiesNames"
+    (enterValue)="search($event)">
+  </app-autocomplete>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <div class="results">
+    <app-company *ngFor="let companyData of selected" 
+      (similarSelected)="similarSelected($event)"
+      [data]="companyData">
+    </app-company>
+  </div>
 </div>

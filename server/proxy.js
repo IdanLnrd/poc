@@ -25,6 +25,18 @@ const flat = (q) => {
     return str.join('&'); 
 }
 
+class Cache {
+    cache = {};
+    getValue(key) {
+        return cache[key];
+    }
+    setValue(key, val) {
+        cache[key] = val;
+    }
+}
+
+const cache = new Cache();
+
 app.get('/*', async (req, res) => {
     
     if(proccess) {
@@ -35,20 +47,33 @@ app.get('/*', async (req, res) => {
     
     const { path, query } = req;
     const config = { headers };
+    if(query.url) {
+        query.url = encodeURIComponent(query.url);
+    }
     const queryString = flat(query);
-    
-    const url = `${baseURL}${path}?${queryString}`;
+    const url = `${baseURL}${path.replace('/', '')}?${queryString}`;
     console.log(`[get] ${url}`);
-
+    let data = null;
     try {
-        const apiResponse = await axios.get(url, config);
-        const { data } = apiResponse;
+
+        data = cache.getValue(url);
+
+        if(!data) {
+            const apiResponse = await axios.get(url, config);
+            data = apiResponse.data;
+            cache.setValue(url, data);
+        }
+
         res.json(data);
+
+
     } catch(err) {
-        const { data } = err.response;
+        data = err.response.data;
         res.json(data);
     } finally {
         proccess = false;
+        console.log('done: ', data);
+        console.log('cache', cache);
     }
 
 });

@@ -33,6 +33,13 @@
     display: flex;
     justify-content: center;
 }
-mat-spinner {
+mat-progress-bar {
     margin: auto;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

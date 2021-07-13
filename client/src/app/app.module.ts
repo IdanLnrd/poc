@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiModule } from './api/api.module';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AutocompleteModule } from './autocomplete/autocomplete.module';
 import { DataModule } from './data/data.module';
+import { CompanyModule } from './company/company.module';
 
 @NgModule({
   declarations: [
@@ -18,9 +19,10 @@ import { DataModule } from './data/data.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     ApiModule,
-    MatProgressSpinnerModule,
+    MatProgressBarModule,
     AutocompleteModule,
-    DataModule
+    DataModule,
+    CompanyModule
   ],
   providers: [],
   bootstrap: [AppComponent]
