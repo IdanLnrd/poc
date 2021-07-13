@@ -1,11 +1,5 @@
 <div>
   <div class="title">{{ title }}</div>
-  <form class="search" (submit)="search(name)">
-    <input #name type="text" placeholder="Company name" value="lightricks">
-    <input type="submit" value="">
-  </form>
+  <app-autocomplete (enterValue)="search($event)"></app-autocomplete>
   <mat-spinner *ngIf="loading"></mat-spinner>
-  <div class="result">
-    <pre>{{ result | json }}</pre>
-  </div>
 </div>

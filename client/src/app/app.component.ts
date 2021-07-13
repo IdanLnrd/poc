@@ -1,31 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ApiService } from './api/api.service';
+import { DatasetService } from './data/dataset.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'LNRD.io';
   loading = false;
   result: any = {};
   company: {[key: string]: { domain: string, name: string } } = {};
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private dataset: DatasetService) {}
   
+  ngOnInit() : void {
+    
+  }
 
-  search(nameEl: HTMLInputElement) {
-    if(nameEl.value) {
-      this.loading = true;
-      const { domain, name } = this.company[nameEl.value] || { domain: 'nubela.co', name: 'Nubela' };
-      const $result = this.api.getCompanyLinkedInUrl( { domain, name } );
-      $result.toPromise()
-      .then(data => { this.result = data })
-      .catch(err => console.error(err))
-      .finally(() => {
-        this.loading = false;
-      });
-    }
-    return false;
+  search(formControl: FormControl) {
+    console.log('search:', formControl.value);
   }
 }

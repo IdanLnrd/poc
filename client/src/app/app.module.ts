@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApiModule } from './api/api.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AutocompleteModule } from './autocomplete/autocomplete.module';
+import { DataModule } from './data/data.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AppRoutingModule,
     BrowserAnimationsModule,
     ApiModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AutocompleteModule,
+    DataModule
   ],
   providers: [],
   bootstrap: [AppComponent]
