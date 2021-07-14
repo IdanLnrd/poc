@@ -1,6 +1,7 @@
 <div>
   <div class="title">{{ title }}</div>
-  <app-autocomplete 
+  <app-autocomplete
+    (optionSelected)="optionSelected($event)"
     [options]="companiesNames"
     (enterValue)="search($event)">
   </app-autocomplete>

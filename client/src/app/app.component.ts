@@ -29,6 +29,11 @@ export class AppComponent implements OnInit {
     console.log(similar);
   }
 
+  optionSelected(data: any) {
+    console.log('optionSelected: ', data.option.value);
+
+  }
+
   async search(formControl: FormControl) {
     const name = formControl.value;
     const company = this.companies.find(c => c.name.toLowerCase() === name.toLowerCase());
@@ -50,7 +55,11 @@ export class AppComponent implements OnInit {
       result.jobs = await this.api.getJobs({ search_id }).toPromise();
       this.selected = [];
       this.selected.push(result);
-      console.log(result); 
+      
+      console.log(Object.keys(this.companies[0]).concat(Object.keys(result)));
+      console.log(result);
+      console.log(this.companies);
+
     } catch(e) {
       console.error(e);
     } finally {

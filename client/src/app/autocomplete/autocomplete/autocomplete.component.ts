@@ -9,6 +9,8 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class AutocompleteComponent implements OnInit {
   @Output() enterValue = new Subject<FormControl>();
+  @Output() optionSelected = new Subject<any>();
+  
   constructor() { }
   myControl = new FormControl();
   @Input() options: string[] = [];
