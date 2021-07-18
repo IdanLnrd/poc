@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
        } = mergedData;
        
       this.result = mergedData;
-       
+       console.log('result:', this.result);
       }
     } catch(e) {
       console.error(e);
