@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as d3 from 'd3';
-const companiesDatasetUrl = 'http://localhost:4200/assets/companies.csv';
-const jobsDatasetUrl = 'http://localhost:4200/assets/jobs.csv';
+import { environment } from 'src/environments/environment';
+const host = environment.host;
+const companiesDatasetUrl = `${host}/assets/companies.csv`;
+const jobsDatasetUrl = `${host}/assets/jobs.csv`;
 
 @Injectable()
 export class DatasetService {
