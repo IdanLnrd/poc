@@ -6,6 +6,7 @@ const BASE_URL = environment.api;
 @Injectable()
 export class ApiService {
    constructor(private http: HttpClient) { 
+     console.log('api:baseurl: ', BASE_URL);
   }
 
   // Linkedin Company Profile Endpoint

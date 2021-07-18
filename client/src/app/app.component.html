@@ -7,9 +7,28 @@
   </app-autocomplete>
   <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
   <div class="results">
-    <app-company *ngFor="let companyData of selected" 
-      (similarSelected)="similarSelected($event)"
-      [data]="companyData">
-    </app-company>
+    <div class="company-data">
+      <div class="name">
+        {{ result.name }}
+      </div>
+      <div class="website">
+        <a [href]="result.website" target="_blank">site</a>
+      </div>
+      <div class="domain">{{ result.domain }}</div>
+      <div class="logo">
+        <img [src]="result.profile_pic_url" alt="">
+      </div>
+      <div class="description">
+        {{ result.description }}
+      </div>
+      <div class="company-type">{{ result.company_type }}</div>
+      <div class="founded-year">{{ result.founded_year }}</div>
+      <!--
+          locations,
+          funding_data,
+          founded_year,
+          hq
+      -->
+    </div>
   </div>
 </div>

@@ -14,8 +14,6 @@ export class AppComponent implements OnInit {
   result: any = {};
   companiesNames: string[] = [];
   companies: any[] = [];
-  selected : any[] = [];
-  company: {[key: string]: { domain: string, name: string } } = {};
   constructor(private api: ApiService, private dataset: DatasetService) {}
   
   ngOnInit() : void {
@@ -53,8 +51,22 @@ export class AppComponent implements OnInit {
       const c = JSON.parse(company || null);
       if(c) {
         const mergedData = Object.assign(companyData, c);
-        console.log(Object.keys(mergedData));
-        
+        console.log();
+        const {
+          domain,
+          website,
+          name,
+          description,
+          profile_pic_url,
+          company_type,
+          locations,
+          funding_data,
+          founded_year,
+          hq
+       } = mergedData;
+       
+      this.result = mergedData;
+       
       }
     } catch(e) {
       console.error(e);
