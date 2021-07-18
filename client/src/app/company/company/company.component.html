@@ -4,21 +4,6 @@
         <img width="32px" [src]="data.profile_pic_url" alt="">  
     </div>
     <div>
-        <div>similar companies</div>
-        <div>
-            <span class="chip" *ngFor="let sc of data.similar_companies" 
-            (click)="similarSelected.next(sc)" >{{ sc.name }}</span>            
-        </div>
-    </div>
-    <hr class="sep">
-    <div>
-        <div>jobs</div>
-        <div>
-            <span class="chip" *ngFor="let j of data.jobs.job">{{ j.job_title }}</span>            
-        </div>
-        <div class="load-more" *ngIf="data.jobs.next_page_api_url">
-            load more jobs
-        </div>
     </div>
 </div>
 <ng-template #no>no company data</ng-template>

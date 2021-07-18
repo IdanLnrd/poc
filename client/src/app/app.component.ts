@@ -36,30 +36,26 @@ export class AppComponent implements OnInit {
 
   async search(formControl: FormControl) {
     const name = formControl.value;
-    const company = this.companies.find(c => c.name.toLowerCase() === name.toLowerCase());
-    const lu = company['linkedin url'];
+    const companyData = this.companies.find(c => c.name.toLowerCase() === name.toLowerCase());
+    const lu = companyData['linkedin url'];
     if(!lu) {
       alert('no linkedin url!');
       return console.error('no linkedin url');
     }
     
     const linkedInUrl = `https://www.${lu}/`;
-    console.log('search:', linkedInUrl);
-    
+
     try {
       formControl.disable();
       this.loading = true;
       const result = await this.api.getCompanyLinkedInProfile({ linkedInUrl }).toPromise();
-     
-      const { search_id } = result;
-      result.jobs = await this.api.getJobs({ search_id }).toPromise();
-      this.selected = [];
-      this.selected.push(result);
-      
-      console.log(Object.keys(this.companies[0]).concat(Object.keys(result)));
-      console.log(result);
-      console.log(this.companies);
-
+      const { company } = result.data;
+      const c = JSON.parse(company || null);
+      if(c) {
+        const mergedData = Object.assign(companyData, c);
+        console.log(Object.keys(mergedData));
+        
+      }
     } catch(e) {
       console.error(e);
     } finally {
